@@ -1,0 +1,30 @@
+#[derive(Debug)]
+
+struct Point{
+    x: f32,
+    y: f32,
+}
+
+struct Rectangle{
+    top_left: Point,
+    bottom_right: Point,
+}
+
+/*fn rect_area{
+    
+}
+
+fn square_to_rect(point: Point, val: f32){
+    
+}*/
+
+fn main(){
+    println!("RECTANGLE:");
+    let point1= Point{x:0.0, y:10.0};
+    let r=Rectangle{ top_left:point1, bottom_right: Point{x:10.0, y:5.0} };
+    //display Rectangle dimension points
+    println!("Dimensions of Top left point     => x:{:.2}, y:{:.2}",r.top_left.x,r.top_left.y);
+    println!("Dimensions of Bottom right point => x:{:.2}, y:{:.2}",r.bottom_right.x,r.bottom_right.y);
+    println!();
+    
+}
