@@ -11,6 +11,7 @@ struct Rectangle{
 }
 
 fn rect_area(rect: Rectangle) -> f32{
+    // l - length of Rectangle => (y1-y2) and b - breadth of Rectangle => (x1-x2)
     let l= (rect.top_left.y-rect.bottom_right.y).abs();
     let b= (rect.top_left.x-rect.bottom_right.x).abs();
     l*b
@@ -29,5 +30,5 @@ fn main(){
     println!("Dimensions of Bottom right point => x:{:.2}, y:{:.2}",r.bottom_right.x,r.bottom_right.y);
     println!();
     
-    println!("Area of Rectangle: {}",rect_area(r));
+    println!("Area of Rectangle: {:.4}",rect_area(r));
 }
