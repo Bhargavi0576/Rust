@@ -10,8 +10,10 @@ struct Rectangle{
     bottom_right: Point,
 }
 
-/*fn rect_area{
-    
+fn rect_area(rect: Rectangle) -> f32{
+    let l= (rect.top_left.y-rect.bottom_right.y).abs();
+    let b= (rect.top_left.x-rect.bottom_right.x).abs();
+    l*b
 }
 
 fn square_to_rect(point: Point, val: f32){
@@ -27,4 +29,5 @@ fn main(){
     println!("Dimensions of Bottom right point => x:{:.2}, y:{:.2}",r.bottom_right.x,r.bottom_right.y);
     println!();
     
+    println!("Area of Rectangle: {}",rect_area(r));
 }
