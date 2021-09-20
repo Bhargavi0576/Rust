@@ -1,0 +1,75 @@
+use crate::List::*;
+
+enum List {
+    Cons(u32, Box<List>), //data, pointer to next node
+    Nil,                  //end of list
+}
+
+impl List {
+    // Empty list
+    fn new() -> List {
+        Nil
+    }
+
+    // add element to the list at the front and return the updated list
+    fn prepend(self, elem: u32) -> List {
+        // `Cons` also has type List
+        Cons(elem, Box::new(self))
+    }
+
+    // Return the length of the list
+    fn len(&self) -> u32 {
+        match *self {
+            // instead take a reference to the tail
+            Cons(_, ref tail) => 1 + tail.len(),
+            Nil => 0
+        }
+    }
+
+    // Return representation of the list as a (heap allocated) string
+    fn stringify(&self) -> String {
+        match *self {
+            Cons(head, ref tail) => {
+                // `format!` is similar to `print!`, but returns a heap
+                // allocated string instead of printing to the console
+                format!("{}, {}", head, tail.stringify())
+            },
+            Nil => {
+                format!("Nil")
+            },
+        }
+    }
+    
+    // Search for the specified element in the list
+    fn search(&self, ele: u32) -> () {
+        match *self {
+            Cons(head, ref tail) => {
+                if ele!=head { tail.search(ele) }
+                else { println!("Element found!") }
+            },
+            Nil => {
+                println!("Element Not found") 
+            },
+        }
+    }
+}
+
+fn main() {
+    // Create an empty linked list
+    let mut list = List::new();
+
+    // Prepend some elements
+    list = list.prepend(1);
+    list = list.prepend(2);
+    list = list.prepend(30);
+    list = list.prepend(10);
+    list = list.prepend(5);
+
+    // Show the final state of the list
+    println!("linked list has length: {}", list.len());
+    println!("{}", list.stringify());
+    
+    // Search for element in list
+    println!("Search an element: ");
+    list.search(30);
+}
