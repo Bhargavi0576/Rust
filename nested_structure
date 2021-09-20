@@ -17,10 +17,6 @@ fn rect_area(rect: Rectangle) -> f32{
     l*b
 }
 
-fn square_to_rect(point: Point, val: f32){
-    
-}*/
-
 fn main(){
     println!("RECTANGLE:");
     let point1= Point{x:0.0, y:10.0};
