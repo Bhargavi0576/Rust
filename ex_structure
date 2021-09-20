@@ -1,0 +1,27 @@
+#[derive(Debug)]
+struct Employee<'a>{
+    name : &'a str,
+    age : u8,
+    salary : f32,
+}
+
+struct Point{
+    x: f32,
+    y: f32,
+}
+
+fn main(){
+    let emp=Employee{name: "Jackson", age:27, salary:33333.33000};
+    //Display Employee structure
+    println!("EMPLOYEE DETAILS");
+    println!("Name: {}",emp.name);
+    println!("Age: {}",emp.age);
+    println!("Salary: {}",emp.salary);
+    println!();
+    
+    println!("POINT:");
+    let point1= Point{x:0.0, y:10.0};
+    //display point dimensions
+    println!("x: {}",point1.x);
+    println!("y: {}",point1.y); 
+}
