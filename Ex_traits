@@ -1,0 +1,88 @@
+struct Fruit{ 
+ name: &'static str, //name of fruit
+ color: &'static str, //color of fruit
+ quantity: f32, //quantity in kgs or dozens
+ price: f32,    //cost for one kg or one dozen
+ cost_high: bool, //find if cost is high than some value
+}
+
+//implementing trait
+trait FruitProp{
+
+    //associated method signature
+    fn new(name: &'static str, color: &'static str, qty: f32, price: f32) -> Self;
+    
+    //implementor methods
+    fn find_name(&self) -> &'static str;
+    fn find_total(&self) -> f32; 
+    fn find_color(&self) -> &'static str;
+    fn price_per_kg(&self) -> f32;
+    
+    //this can be overridden if needed
+    fn print(&self){
+        println!("Fruit properties: ");
+        println!("Name: {}, Color: {}, Price per kg: {}",self.find_name(),self.find_color(),self.price_per_kg());
+    }
+}
+
+impl Fruit{
+    //finds if price is more than 50rps
+    fn is_price(&mut self) -> bool{
+        if self.price>50f32 {
+            self.cost_high=true;
+        }
+        self.cost_high      
+    }
+}
+
+impl FruitProp for Fruit{
+
+    //creates a new instance of fruit
+    fn new(name: &'static str, color: &'static str, qty: f32, price: f32) -> Fruit{
+        Fruit { name: name, color: color, quantity: qty, price: price, cost_high: false}
+    }
+    
+    //calculates the total amount
+    fn find_total(&self) -> f32{
+        self.price*self.quantity
+    }
+    
+    //returns the name of fruit
+    fn find_name(&self) -> &'static str{
+        self.name
+    }
+    
+    //returns the color of fruit
+    fn find_color(&self) -> &'static str{
+        self.color
+    }
+    
+    //returns the price of fruit for 1 kg
+    fn price_per_kg(&self) -> f32{
+        self.price
+    }
+}
+
+fn main(){
+    //creating mutable(changable) instances of Fruit type
+    let mut banana: Fruit= FruitProp::new("Banana","yellow",2f32,30f32);
+    let mut orange: Fruit= FruitProp::new("Orange","orange",1f32,60f32);
+    let mut apple: Fruit= FruitProp::new("Apple","red",2f32,100f32);
+    
+    //Print details of the Fruit
+    banana.print();
+    println!("Is price more than 50? :: {}",banana.is_price());
+    println!("Total Amount:: {}",banana.find_total());
+    println!();
+    println!();
+    
+    orange.print();
+    println!("Is price more than 50? :: {}",orange.is_price());
+    println!("Total Amount:: {}",orange.find_total());
+    println!();
+    println!();
+    
+    apple.print();
+    println!("Is price more than 50? :: {}",apple.is_price());
+    println!("Total Amount:: {}",apple.find_total());
+}
