@@ -1,0 +1,7 @@
+syntax="proto3";
+//package user;
+message Person{
+   string lname = 1; //Last Name
+   string fname = 2; //First Name
+   string dob = 3;   //Date of Birth
+}
